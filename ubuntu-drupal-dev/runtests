@@ -1,2 +1,2 @@
 #!/bin/bash
-runuser -p -l www-data -c "cd /var/www/drupal/core && ./../vendor/bin/phpunit $*"
+runuser -p www-data -c "cd /var/www/drupal/core && ./../vendor/bin/phpunit $*"
