@@ -30,8 +30,7 @@ RUN \
 
 # Add drush config, and default.settings.php
 ADD drushrc.php /etc/drush/drushrc.php
-ADD default.settings.php /var/www/html/sites/default/default.settings.php
-ADD default.settings.php /var/www/html/sites/default/settings.php
+ADD default.settings.php /var/www/drupal/sites/default/default.settings.php
 
 # Set up path to use composer
 ENV PATH="/root/.composer/vendor/bin:${PATH}"
@@ -47,9 +46,6 @@ CMD ["apachectl", "-D", "FOREGROUND"]
 
 # Set the working dir to make running drush easy
 WORKDIR /var/www/drupal
-
-# Set environment variable for testing
-ENV SIMPLETEST_BASE_URL http://localhost
 
 # open port 80
 EXPOSE 80

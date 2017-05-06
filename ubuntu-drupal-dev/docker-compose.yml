@@ -1,0 +1,20 @@
+mariadb:
+  image: mariadb
+  environment:
+    MYSQL_DATABASE: drupal
+    MYSQL_ALLOW_EMPTY_PASSWORD: 1
+  ports:
+          - "3306:3306"
+
+drupal:
+  build: .
+  ports:
+          - "80:80"
+  links:
+    - mariadb
+  environment:
+    DB_DATABASE: drupal
+    DB_USER: root
+    DB_HOST: mariadb
+    DB_PORT: 3306
+  
