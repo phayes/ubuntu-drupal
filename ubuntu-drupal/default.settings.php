@@ -764,8 +764,7 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
 
-# For development, turn on all debugging
-$config['system.logging']['error_level'] = 'verbose';
+# Database
 $databases['default']['default'] = array (
   'database' => getenv('DB_DATABASE') ?? 'drupal',
   'username' => getenv('DB_USER') ?? 'root',
