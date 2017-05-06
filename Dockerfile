@@ -12,18 +12,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apache2
 # Install PHP
 RUN apt-get install -y php php-cli php-mbstring php-pdo php-gmp php-xml php-curl php-gd php-imagick php-mysql php-mcrypt php-memcache php-xsl php-opcache drush phpunit composer libapache2-mod-php
 
-# Install drush
+# Install drush (drush requires mysql-client)
 RUN composer global require drush/drush
+RUN apt-get install -y mysql-client
 
 # Install apache-php
 RUN a2enmod rewrite
 ADD apache2.conf /etc/apache2/apache2.conf
-
-# Clean up
-RUN apt-get clean
-
-# Fix up MySQL
-# RUN mkdir -p /var/run/mysqld && chown mysql:mysql /var/run/mysqld
 
 # Install Drupal 8.3
 RUN \ 
