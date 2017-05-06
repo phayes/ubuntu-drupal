@@ -18,26 +18,25 @@ RUN apt-get install -y mysql-client
 
 # Install apache-php
 RUN a2enmod rewrite
-ADD apache2.conf /etc/apache2/apache2.conf
+ADD 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Install Drupal 8.3
 RUN \ 
   wget https://ftp.drupal.org/files/projects/drupal-8.3.x-dev.tar.gz && \
   tar -xf drupal-8.3.x-dev.tar.gz && \
-  rm -rf /var/www/html && \
-  mv drupal-8.3.x-dev /var/www/html && \
-  chown -R www-data /var/www/html && \
-  chmod -R og+w /var/www/html && \
+  mv drupal-8.3.x-dev /var/www/drupal && \
+  chown -R www-data /var/www/drupal && \
   rm -f drupal-8.3.x-dev.tar.gz
 
-# Add php config, drush config, and default.settings.php
-ADD php.ini /etc/php.ini
+# Add drush config, and default.settings.php
 ADD drushrc.php /etc/drush/drushrc.php
 ADD default.settings.php /var/www/html/sites/default/default.settings.php
 ADD default.settings.php /var/www/html/sites/default/settings.php
 
 # Set up path to use composer
 ENV PATH="/root/.composer/vendor/bin:${PATH}"
+
+# TODO: AppArmour
 
 # Tidy up
 RUN apt-get -y autoremove && apt-get clean && apt-get autoclean && \
@@ -47,7 +46,7 @@ RUN apt-get -y autoremove && apt-get clean && apt-get autoclean && \
 CMD ["apachectl", "-D", "FOREGROUND"]
 
 # Set the working dir to make running drush easy
-WORKDIR /var/www/html
+WORKDIR /var/www/drupal
 
 # Set environment variable for testing
 ENV SIMPLETEST_BASE_URL http://localhost
