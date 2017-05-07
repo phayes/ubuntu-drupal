@@ -1,2 +1,2 @@
 #!/bin/bash
-runuser -p www-data -c "cd /var/www/drupal/core && ./../vendor/bin/phpunit $*"
+runuser -l www-data -c "export SIMPLETEST_BASE_URL=http://localhost && export SIMPLETEST_DB=$SIMPLETEST_DB && cd /var/www/drupal/core && ./../vendor/bin/phpunit $*"
