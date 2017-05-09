@@ -8,12 +8,12 @@ This container is meant to be used with the `drupal-project` composer template. 
 
 The docker-hub images can be found here: 
 
-##### Production:
+#### Production:
 https://hub.docker.com/r/phayes/ubuntu-drupal/
 
 `docker pull phayes/ubuntu-drupal`
 
-##### Development:
+#### Development:
 https://hub.docker.com/r/phayes/ubuntu-drupal-dev/
 
 `docker pull phayes/ubuntu-drupal-dev`
