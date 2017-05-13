@@ -1,2 +1,6 @@
 #!/bin/bash
-runuser -l www-data -c "export SIMPLETEST_BASE_URL=http://localhost && export SIMPLETEST_DB=$SIMPLETEST_DB && cd /var/www/drupal/core && ./../vendor/bin/phpunit $*"
+
+# OLD:
+# runuser -p www-data -c "export SIMPLETEST_BASE_URL=http://localhost && export SIMPLETEST_DB=$SIMPLETEST_DB phpunit $*"
+
+runuser -p www-data -c "phpunit $*"

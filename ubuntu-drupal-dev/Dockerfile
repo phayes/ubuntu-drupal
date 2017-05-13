@@ -7,13 +7,13 @@ RUN apt-get update
 RUN apt-get install -y php-xdebug
 
 # Automatically add settings.php
-ADD default.settings.php /var/www/drupal/sites/default/default.settings.php
-ADD default.settings.php /var/www/drupal/sites/default/settings.php
+ADD default.settings.php /var/www/web/sites/default/default.settings.php
+ADD default.settings.php /var/www/web/sites/default/settings.php
 
 # Set perms on settings.php
 RUN \
-  chown www-data /var/www/drupal/sites/default/settings.php && \
-  chgrp www-data /var/www/drupal/sites/default/settings.php
+  chown www-data /var/www/web/sites/default/settings.php && \
+  chgrp www-data /var/www/web/sites/default/settings.php
 
 # Set-up apache for testing
 # Now to run tests: docker exec unbuntu-drupal-dev runtests
@@ -25,8 +25,8 @@ RUN \
 # Default command
 CMD ["apachectl", "-D", "FOREGROUND"]
 
-# Set the working dir to make running drush easy
-WORKDIR /var/www/drupal
+# Set the working dir
+WORKDIR /var/www
 
 # Set environment variable for testing
 ENV SIMPLETEST_BASE_URL http://localhost
