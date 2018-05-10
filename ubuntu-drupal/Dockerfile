@@ -26,11 +26,11 @@ ADD 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Install Drupal 8.3
 RUN \ 
-  wget https://ftp.drupal.org/files/projects/drupal-8.3.x-dev.tar.gz && \
-  tar -xf drupal-8.3.x-dev.tar.gz && \
-  mv drupal-8.3.x-dev /var/www/web && \
+  wget https://ftp.drupal.org/files/projects/drupal-8.5.x-dev.tar.gz && \
+  tar -xf drupal-8.5.x-dev.tar.gz && \
+  mv drupal-8.5.x-dev /var/www/web && \
   chown -R www-data /var/www/web && \
-  rm -f drupal-8.3.x-dev.tar.gz
+  rm -f drupal-8.5.x-dev.tar.gz
 
 # Add drush config, and default.settings.php
 ADD drushrc.php /etc/drush/drushrc.php
